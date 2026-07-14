@@ -428,10 +428,10 @@
     <div class="data">Sábado · 11 de julho</div>
     <h2 class="titulo-dia">Pindobal <span class="tag carro">de carro</span> <span class="tag pernoite">pernoite em Alter</span></h2>
     <div class="conteudo">
-      <span class="duracao">Manhã: ~3h · Tarde: ~2h</span>
-      <p><strong>Manhã:</strong> você, sua filha e a cachorrinha (namorada se tiver livre) vão de carro até Alter do Chão e seguem para a <strong>Praia do Pindobal</strong> — tabladas de palha à beira do Tapajós, acesso fácil de carro.</p>
-      <p><strong>Tarde:</strong> busca da namorada em Santarém (conforme o horário de saída do trabalho — meio-dia ou 19h). Voltando a Alter, fechem o dia com o pôr do sol na <strong>Ponta do Cururu</strong>.</p>
-      <p class="obs">A Ponta do Cururu só tem acesso por água — exigiria contratar um barquinho de ida e volta apenas para o pôr do sol (~15-25 min de lancha desde Alter).</p>
+      <span class="duracao">Manhã na praia · Noite em Alter do Chão</span>
+      <p><strong>Manhã:</strong> fomos de carro até <strong>Alter do Chão</strong> e direto para a <strong>Praia do Pindobal</strong> — tabladas de palha à beira do Tapajós, areia branquinha e água morena. Encontramos a <strong>Bruna</strong> no caminho e a tarde foi de praia e rio com a cachorrinha.</p>
+      <p><strong>Pernoite:</strong> ficamos hospedadas na <strong>Pousada Aurora Boreal</strong>, em Alter do Chão — base confortável e acolhedora para o roteiro.</p>
+      <p><strong>Jantar:</strong> no <strong>Restaurante Arco-Íris da Amazônia</strong> — pedimos a <em>panqueca de berinjela</em> e o <em>x-burguer</em>. Uma delícia!</p>
       <button class="ver-fotos-btn" onclick="abrirGaleria('g2')">Ver fotos</button>
       <template id="g2-titulo">Pindobal & Ponta do Cururu</template>
       <template id="g2">
@@ -841,17 +841,15 @@
             // [3]=Meliponário, [4]=artesanato, [5]=banco de areia Icuxi, [6]=barco na praia
 
             // Coordenadas verificadas via OSM/Nominatim
-            // Rota: Alter → Norte pelo Tapajós → Canal do Jarí → Noroeste pelo Arapiuns
-            // → Icuxí → Toronó → Ponta Grande → Coroca → Meliponário → Ponta do Muretá → volta
+            // Rota: Alter → Noroeste pelo Arapiuns → Icuxí → Toronó → Ponta Grande → Coroca → Meliponário → Ponta do Cururu → volta
             var pontos = [
               { lat:-2.5237, lng:-54.9502, nome:"Alter do Chão",     sub:"Saída ~9h · Retorno à noite",     cor:"#1f9aa3", num:"⚓", photo:-1 },
-              { lat:-2.3780, lng:-54.9200, nome:"Canal do Jarí",     sub:"Vitórias-régias · botos · fauna", cor:"#0f5c63", num:"1",  photo:0  },
-              { lat:-2.3317, lng:-55.0608, nome:"Praia do Icuxí",    sub:"Rio Arapiuns",                    cor:"#d96b4a", num:"2",  photo:5  },
-              { lat:-2.3600, lng:-55.1400, nome:"Ponta do Toronó",   sub:"Rio Arapiuns",                    cor:"#d96b4a", num:"3",  photo:6  },
-              { lat:-2.3951, lng:-55.1912, nome:"Ponta Grande",      sub:"Praia do Arapiuns",               cor:"#d96b4a", num:"4",  photo:1  },
-              { lat:-2.4208, lng:-55.2077, nome:"Comunidade Coroca", sub:"Almoço · tartarugas · trilha",    cor:"#0f5c63", num:"5",  photo:2  },
-              { lat:-2.4260, lng:-55.2130, nome:"Meliponário",       sub:"Trilha das abelhas nativas",      cor:"#c9a227", num:"6",  photo:3  },
-              { lat:-2.4520, lng:-55.0791, nome:"Ponta do Muretá",   sub:"Pôr do sol (volta)",              cor:"#f2935c", num:"🌅", photo:-1 }
+              { lat:-2.3317, lng:-55.0608, nome:"Praia do Icuxí",    sub:"Rio Arapiuns",                    cor:"#d96b4a", num:"1",  photo:5  },
+              { lat:-2.3600, lng:-55.1400, nome:"Ponta do Toronó",   sub:"Rio Arapiuns",                    cor:"#d96b4a", num:"2",  photo:6  },
+              { lat:-2.3951, lng:-55.1912, nome:"Ponta Grande",      sub:"Praia do Arapiuns",               cor:"#d96b4a", num:"3",  photo:1  },
+              { lat:-2.4208, lng:-55.2077, nome:"Comunidade Coroca", sub:"Almoço · tartarugas · trilha",    cor:"#0f5c63", num:"4",  photo:2  },
+              { lat:-2.4260, lng:-55.2130, nome:"Meliponário",       sub:"Trilha das abelhas nativas",      cor:"#c9a227", num:"5",  photo:3  },
+              { lat:-2.5210, lng:-54.9680, nome:"Ponta do Cururu",   sub:"Pôr do sol na volta",             cor:"#f2935c", num:"🌅", photo:-1 }
             ];
 
             var map = L.map('mapa-outros-rios', { scrollWheelZoom:false, zoomControl:true })
