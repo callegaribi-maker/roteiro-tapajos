@@ -131,6 +131,7 @@
   }
   .ver-fotos-btn::before{content:"📷";font-size:13px;}
   .ver-fotos-btn:hover{background:rgba(126,200,227,.1);border-color:var(--rio);}
+  .ver-fotos-btn{display:none !important;}
 
   /* ===== TIRA DE FOTOS ===== */
   .tira-wrapper{margin-top:18px;}
@@ -1483,6 +1484,13 @@
 
 
 
+
+
+
+
+
+
+
 <script>
 (function(){
   document.querySelectorAll('.dia[data-num]').forEach(function(dia){
@@ -1490,40 +1498,39 @@
     var tpl = document.getElementById('g'+num);
     var imgs = tpl ? Array.from(tpl.content.querySelectorAll('img')) : [];
 
+    // Separate header elements from body content
     var allChildren = Array.from(dia.childNodes);
     var dataEl=null, tituloEl=null, rest=[];
     allChildren.forEach(function(c){
       if(c.nodeType===1 && c.classList && c.classList.contains('data')) dataEl=c;
       else if(c.nodeType===1 && c.tagName==='H2') tituloEl=c;
-      // Skip ver-fotos-btn — tira substitui
-      else if(c.nodeType===1 && c.classList && c.classList.contains('ver-fotos-btn')) return;
       else rest.push(c);
     });
 
     dia.innerHTML='';
 
-    // Badge lateral
+    // Day number badge (timeline axis)
     var badge=document.createElement('div');
     badge.className='dia-num-badge';
     badge.textContent=num;
     dia.appendChild(badge);
 
-    // Cabeçalho
+    // Date + title header
     var header=document.createElement('div');
     header.className='entrada-header';
     if(dataEl) header.appendChild(dataEl);
     if(tituloEl) header.appendChild(tituloEl);
     dia.appendChild(header);
 
-    // Separador
+    // Decorative separator
     var sep=document.createElement('div');
     sep.className='separador';
     dia.appendChild(sep);
 
-    // Conteúdo restante (sem o botão)
+    // Body content (duracao, text, map, templates — no ver-fotos-btn)
     rest.forEach(function(c){ dia.appendChild(c); });
 
-    // Tira de fotos (substitui o botão)
+    // Film strip
     if(imgs.length>0){
       var wrap=document.createElement('div');
       wrap.className='tira-wrapper';
@@ -1536,7 +1543,6 @@
       imgs.forEach(function(src){
         var img=document.createElement('img');
         img.src=src.src; img.alt='';
-        img.title='Clique para ampliar';
         img.onclick=function(){
           document.getElementById('lbImg').src=img.src;
           document.getElementById('lbOverlay').classList.add('aberto');
@@ -1545,64 +1551,6 @@
       });
       wrap.appendChild(tira);
       dia.appendChild(wrap);
-    }
-  });
-})();
-</script>
-
-
-
-
-
-<script>
-(function(){
-  var dias = document.querySelectorAll('.dia[data-num]');
-  dias.forEach(function(dia){
-    var num = dia.getAttribute('data-num');
-    var tpl = document.getElementById('g'+num);
-    var imgs = tpl ? Array.from(tpl.content.querySelectorAll('img')) : [];
-
-    // Move existing children into editorial-info
-    var children = Array.from(dia.childNodes);
-    var info = document.createElement('div');
-    info.className = 'editorial-info';
-    children.forEach(function(c){ info.appendChild(c); });
-
-    // Build left foto panel
-    var fotoPanel = document.createElement('div');
-    fotoPanel.className = 'editorial-foto';
-    if(imgs[0]){
-      var heroImg = document.createElement('img');
-      heroImg.src = imgs[0].src; heroImg.alt = '';
-      fotoPanel.appendChild(heroImg);
-    }
-    var badge = document.createElement('div');
-    badge.className = 'dia-num-badge';
-    badge.textContent = num;
-    fotoPanel.appendChild(badge);
-
-    // Split row
-    var split = document.createElement('div');
-    split.className = 'editorial-split';
-    split.appendChild(fotoPanel);
-    split.appendChild(info);
-    dia.appendChild(split);
-
-    // Thumbnail strip (photos 2-4)
-    var thumbSrcs = imgs.slice(1,5);
-    if(thumbSrcs.length > 0){
-      var strip = document.createElement('div');
-      strip.className = 'editorial-thumbs';
-      thumbSrcs.forEach(function(src){
-        var t = document.createElement('img');
-        t.src = src.src; t.alt = '';
-        t.onclick = function(){
-          document.getElementById('lbImg').src = t.src;
-          document.getElementById('lbOverlay').classList.add('aberto');
-        };
-        strip.appendChild(t);
-      });
-      dia.appendChild(strip);
     }
   });
 })();
